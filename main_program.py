@@ -18,7 +18,8 @@ GPIO.setup(4, GPIO.OUT, initial=GPIO.HIGH) # GPIO4 = base
 GPIO.setup(5, GPIO.OUT, initial=GPIO.LOW) # GPIO5 = water
 GPIO.setup(6, GPIO.OUT, initial=GPIO.LOW) # GPIO6 = nuterients
 GPIO.setup(7, GPIO.IN) # GPIO7 = read whether big pump is on or not
-def mist_cycle():
+def mist_cycle(none):
+    blank = none
     try:
         while True:
             GPIO.output(2, GPIO.LOW) # TURN MIST ON
@@ -28,7 +29,8 @@ def mist_cycle():
     except KeyboardInterrupt:
         GPIO.cleanup()
     
-def res_maintain():
+def res_maintain(none):
+    blank = none
     try:
         ser = serial.Serial('/dev/ttyACM0',9600)
     except:
