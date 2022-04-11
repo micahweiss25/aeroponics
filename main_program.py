@@ -30,6 +30,7 @@ def mist_cycle(none):
         GPIO.cleanup()
     
 def res_maintain(none):
+    # next, right ph to a file 
     blank = none
     try:
         ser = serial.Serial('/dev/ttyACM0',9600)
