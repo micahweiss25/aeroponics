@@ -1,5 +1,6 @@
 from time import sleep
 import serial
+import datetime
 try:
     import multiprocessing as mp
 except RuntimeError:
@@ -9,6 +10,7 @@ try:
 except RuntimeError:
     print("Error importing RPi.GPIO!  This is probably because you need superuser privileges.  You can achieve this by using 'sudo' to run your script")
 
+    
 ## ACTIVE LOW! ##
 GPIO.setwarnings(False) # turn off warnings
 GPIO.setmode(GPIO.BCM) # use GPIO numbers to specify inputs
@@ -19,18 +21,23 @@ GPIO.setup(5, GPIO.OUT, initial=GPIO.LOW) # GPIO5 = water
 GPIO.setup(6, GPIO.OUT, initial=GPIO.LOW) # GPIO6 = nuterients
 GPIO.setup(7, GPIO.IN) # GPIO7 = read whether big pump is on or not
 def mist_cycle(none):
+    mist_log = open("mist_log", "w")
     blank = none
+    count = 0
     try:
         while True:
+            mist_log.write(f"mist cycle {count}")
             GPIO.output(2, GPIO.LOW) # TURN MIST ON
             sleep(5)
             GPIO.output(2, GPIO.HIGH) # TURN MIST OFF
             sleep(300)
+            count += 1
     except KeyboardInterrupt:
         GPIO.cleanup()
     
 def res_maintain(none):
     # next, right ph to a file 
+    ph_log = open("ph_log", "w")
     blank = none
     try:
         ser = serial.Serial('/dev/ttyACM0',9600)
@@ -39,17 +46,19 @@ def res_maintain(none):
     s = [0]
     while True:
         read_serial = str(ser.readline()) ## find the format so you can just get numbers
-        print(read_serial)
+        ph_log.write(f"{read_serial}; {datetime.datetime.now()}")
         # or modify ph sketch 
         # Should I pipe data from this function to a different one?
         ##### FOR NOW #####
         ph_balance = int(read_serial[read_serial.indexOf('pH:')+3:read_serial.indexOf('pH:')+7])
         if ph_balance > 6.3:
+            ph_log.write(f"pH is too high; {read_serial}; {datetime.datetime.now()}")
             GPIO.output(3, GPIO.LOW)
             sleep(5)
             GPIO.output(3, GPIO.HIGH)
             sleep(300)
         elif ph_balance < 5.3:
+            ph_log.write(f"pH is too low; {read_serial}; {datetime.datetime.now()}")
             GPIO.output(4, GPIO.LOW)
             sleep(5)
             GPIO.output(4, GPIO.HIGH)
