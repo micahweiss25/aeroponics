@@ -1,6 +1,7 @@
 from time import sleep
 import serial
 import datetime
+import re
 try:
     import multiprocessing as mp
 except RuntimeError:
@@ -30,7 +31,7 @@ def mist_cycle(none):
             GPIO.output(2, GPIO.LOW) # TURN MIST ON
             sleep(5)
             GPIO.output(2, GPIO.HIGH) # TURN MIST OFF
-            sleep(300)
+            sleep(5)
             count += 1
     except KeyboardInterrupt:
         GPIO.cleanup()
@@ -50,19 +51,19 @@ def res_maintain(none):
         # or modify ph sketch 
         # Should I pipe data from this function to a different one?
         ##### FOR NOW #####
-        ph_balance = int(read_serial[read_serial.indexOf('pH:')+3:read_serial.indexOf('pH:')+7])
+        ph_balance = float(re.sub('[^0-9.]', '', read_serial))
         if ph_balance > 6.3:
             ph_log.write(f"pH is too high; {read_serial}; {datetime.datetime.now()}")
             GPIO.output(3, GPIO.LOW)
             sleep(5)
             GPIO.output(3, GPIO.HIGH)
-            sleep(300)
+            sleep(5)
         elif ph_balance < 5.3:
             ph_log.write(f"pH is too low; {read_serial}; {datetime.datetime.now()}")
             GPIO.output(4, GPIO.LOW)
             sleep(5)
             GPIO.output(4, GPIO.HIGH)
-            sleep(300)
+            sleep(5)
 
 
 
@@ -74,3 +75,4 @@ if __name__ == '__main__':
     res_maintain_process.start()
     mist_cycle_process.join()
     res_maintain_process.join()
+
