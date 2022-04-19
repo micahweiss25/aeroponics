@@ -65,6 +65,8 @@ def res_maintain(none):
                 sleep(5)
                 GPIO.output(4, GPIO.HIGH)
                 sleep(5)
+        else:
+            pass
                 
 
 
