@@ -17,7 +17,7 @@ void setup(void)
 {
   pinMode(LED,OUTPUT);
   Serial.begin(9600);
-  Serial.println("pH meter experiment!");    //Test the serial monitor
+  //Serial.println("pH meter experiment!");    //Test the serial monitor
 }
 void loop(void)
 {
@@ -26,7 +26,7 @@ void loop(void)
   static float pHValue,voltage;
   if(millis()-samplingTime > samplingInterval)
   {
-      pHArray[pHArrayIndex++]=analogRead(SensorPin);
+      pHArray[pHArrayIndex++]=analogRead(SensorPin); // pHArrayIndex++ increases pHArrayIndex by one, subsequently increasing the size of the array
       if(pHArrayIndex==ArrayLenth)pHArrayIndex=0;
       voltage = avergearray(pHArray, ArrayLenth)*5.0/1024;
       pHValue = 3.5*voltage+Offset;
@@ -35,8 +35,8 @@ void loop(void)
   if(millis() - printTime > printInterval)   //Every 800 milliseconds, print a numerical, convert the state of the LED indicator
   {
     Serial.print("Voltage:");
-        Serial.print(voltage,2);
-        Serial.print("    pH value: ");
+        Serial.print(voltage,2); // print(foo, 2); the two specifies the number of values to print after the decimal
+        Serial.print(" pH value:");
     Serial.println(pHValue,2);
         digitalWrite(LED,digitalRead(LED)^1);
         printTime=millis();
