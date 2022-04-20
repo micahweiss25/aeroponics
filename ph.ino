@@ -36,7 +36,7 @@ void loop(void)
   {
     Serial.print("Voltage:");
         Serial.print(voltage,2); // print(foo, 2); the two specifies the number of values to print after the decimal
-        Serial.print(" pH value:");
+        Serial.print("#pH value:");
     Serial.println(pHValue,2);
         digitalWrite(LED,digitalRead(LED)^1);
         printTime=millis();
