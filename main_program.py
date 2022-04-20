@@ -57,12 +57,14 @@ def res_maintain(none):
                 ph_balance = float(re.sub('[^0-9.]', '', read_serial))
                 if ph_balance > 6.3:
                     ph_log.write(f"pH is too high; {read_serial}; {datetime.datetime.now()}")
+                    print(f"pH is too high; {read_serial}; {datetime.datetime.now()}")
                     GPIO.output(3, GPIO.LOW)
                     sleep(5)
                     GPIO.output(3, GPIO.HIGH)
                     sleep(5)
                 elif ph_balance < 5.3:
                     ph_log.write(f"pH is too low; {read_serial}; {datetime.datetime.now()}")
+                    print(f"pH is too low; {read_serial}; {datetime.datetime.now()}")
                     GPIO.output(4, GPIO.LOW)
                     sleep(5)
                     GPIO.output(4, GPIO.HIGH)
@@ -70,7 +72,7 @@ def res_maintain(none):
             else:
                 pass
         except:
-            pass
+            print("pass")
 
 
 
