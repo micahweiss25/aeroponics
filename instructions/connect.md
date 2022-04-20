@@ -1,5 +1,6 @@
 1. Create the unit file in /etc/systemd/system
-```[Unit]
+```
+[Unit]
 Description=plz work
 Wants=network.target
 After=network.target
