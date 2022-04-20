@@ -47,7 +47,9 @@ def res_maintain(none):
     s = [0]
     while True:
         read_serial = str(ser.readline()) ## find the format so you can just get numbers
-        ph_log.write(f"{read_serial}; {datetime.datetime.now()}")
+        try:
+            data = read_serial.split()
+            ph_log.write(f"{read_serial}; {datetime.datetime.now()}\n")
         # or modify ph sketch 
         # Should I pipe data from this function to a different one?
         ##### FOR NOW #####
