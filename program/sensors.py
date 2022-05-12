@@ -11,7 +11,8 @@ def sensor_data(none):
         voltage = float(read_serial[0])
         ph_balance = float(read_serial[1])
         ec = float(read_serial[2])
+        temp = float(read_serial[3])
         with open(f"ph_log_{inst_time}", "w") as log:
-            log.write(f"pH: {ph_balance}; voltage: {voltage}; ec: {ec}; time: {datetime.datetime.now()}")
+            log.write(f"pH: {ph_balance}; voltage: {voltage}; ec: {ec}; temp: {temp}; time: {datetime.datetime.now()}")
         # This should be made into it's own process so the sleeps don't stop data collection
 
