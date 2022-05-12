@@ -1,4 +1,5 @@
-def ph_pumps():
+def ph_cycle(None):
+  blank = None # don't think this is needed
   if ph_balance > 6.3:
       print("ph high")
       GPIO.output(3, GPIO.LOW)
