@@ -7,6 +7,7 @@
 */
 #define SensorPin A0            //pH meter Analog output to Arduino Analog Input 0
 #define TdsSensorPin A1
+#define tempPin A2
 #define VREF 5.0
 #define SCOUNT 30    // size of the array
 #define Offset 0.5            //deviation compensate. Test Ph against a solution with a know ph to determine offset. know solution ph 7, sensor says 6.88, offset is 0.12
@@ -19,12 +20,14 @@ int analogBuffer[SCOUNT];
 int analogBufferTemp[SCOUNT];
 int analogBufferIndex = 0, copyIndex = 0;
 int averageVoltage = 0, tdsValue = 0, temperature = 25; // might need to adjust temp
+int temp = 0;
 
 void setup(void)
 {
   Serial.begin(9600);
   pinMode(SensorPin, INPUT);
   pinMode(TdsSensorPin, INPUT);
+  pinMode(tempPin, INPUT);
 }
 void loop(void)
 {
@@ -44,6 +47,8 @@ void loop(void)
       voltage = avergearray(pHArray, ArrayLenth)*5.0/1024;
       pHValue = 3.5*voltage+Offset;
       samplingTime=millis();
+      #Temp
+      temp = digitalRead(tempPin);
   }
   if(millis() - printTime > printInterval)   //Every 800 milliseconds, write a numerical, convert the state of the LED indicator
   {
@@ -56,7 +61,7 @@ void loop(void)
     tdsValue = (133.42 * compensationVoltage * compensationVoltage * compensationVoltage - 255.86 * compensationVoltage * compensationVoltage + 857.39 * compensationVoltage) * 0.5;
    
     #pH
-    payload = str(voltage) + "#" str(pHValue) + "#" + str(tdsValue) + "\n"
+    payload = str(voltage) + "#" str(pHValue) + "#" + str(tdsValue) + str(temp) + "\n"
     Serial.write(payload)
     #Serial.print("Voltage:");
     #   Serial.print(voltage,2); // print(foo, 2); the two specifies the number of values to print after the decimal
