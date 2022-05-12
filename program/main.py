@@ -3,6 +3,7 @@ import serial
 import datetime
 from sensors import ph_balance, sensor_data
 from misters import mist_cycle
+from ph import ph_cycle
 from connect_gpio import make_connection
 try:
     import multiprocessing as mp
@@ -18,8 +19,11 @@ connect_gpio.make_connection()
 if __name__ == '__main__':
     mist_cycle_process = mp.Process(target=misters.mist_cycle, args=(None,))
     res_maintain_process = mp.Process(target=sensors.sensor_data, args=(None,))
+    ph_cycle_process = mp.Process(target=ph.ph_cycle, args=(None,))
 
     mist_cycle_process.start()
     res_maintain_process.start()
+    ph_cycle_process.start()
     mist_cycle_process.join()
     res_maintain_process.join()
+    ph_cycle_process.join()
