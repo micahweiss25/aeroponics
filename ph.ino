@@ -7,7 +7,7 @@
 */
 #define SensorPin A0            //pH meter Analog output to Arduino Analog Input 0
 #define Offset 0.5            //deviation compensate. Test Ph against a solution with a know ph to determine offset. know solution ph 7, sensor says 6.88, offset is 0.12
-#define LED 13
+#define LED 13           // THIS LINE IS UNNECESSARY BECAUSE I DON'T USE AN LED
 #define samplingInterval 20
 #define printInterval 800
 #define ArrayLenth  40    //times of collection
@@ -15,7 +15,7 @@ int pHArray[ArrayLenth];   //Store the average value of the sensor feedback
 int pHArrayIndex=0;
 void setup(void)
 {
-  pinMode(LED,OUTPUT);
+  pinMode(LED,OUTPUT); // UNNECESSARY
   Serial.begin(9600);
   //Serial.println("pH meter experiment!");    //Test the serial monitor
 }
