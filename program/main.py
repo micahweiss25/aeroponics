@@ -1,10 +1,3 @@
-from time import sleep
-import serial
-import datetime
-from sensors import ph_balance, sensor_data
-from misters import mist_cycle
-from ph import ph_cycle
-from connect_gpio import *
 try:
     import multiprocessing as mp
 except RuntimeError:
@@ -13,6 +6,14 @@ try:
     import RPi.GPIO as GPIO
 except RuntimeError:
     print("Error importing RPi.GPIO!  This is probably because you need superuser privileges.  You can achieve this by using 'sudo' to run your script")
+from time import sleep
+import serial
+import datetime
+from sensors import ph_balance, sensor_data
+from misters import mist_cycle
+from ph import ph_cycle
+from connect_gpio import *
+
 
 connect_gpio.make_connection()
    
