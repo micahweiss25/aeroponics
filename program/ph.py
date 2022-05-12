@@ -2,13 +2,13 @@ def ph_cycle(None):
   blank = None # don't think this is needed
   if ph_balance > 7:
       print("ph high")
-      GPIO.output(3, GPIO.LOW)
+      GPIO.output(BASE, GPIO.LOW)
       sleep(5)
-      GPIO.output(3, GPIO.HIGH)
+      GPIO.output(BASE, GPIO.HIGH)
       sleep(600)
   elif ph_balance < 5:
       print("ph low")
-      GPIO.output(4, GPIO.LOW)
+      GPIO.output(ACID, GPIO.LOW)
       sleep(5)
-      GPIO.output(4, GPIO.HIGH)
+      GPIO.output(ACID, GPIO.HIGH)
       sleep(600)
