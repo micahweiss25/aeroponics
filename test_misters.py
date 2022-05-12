@@ -1,3 +1,4 @@
+import sleep
 try:
     import RPi.GPIO as GPIO
 except RuntimeError:
