@@ -19,7 +19,7 @@ int pHArrayIndex=0;
 int analogBuffer[SCOUNT];
 int analogBufferTemp[SCOUNT];
 int analogBufferIndex = 0, copyIndex = 0;
-int averageVoltage = 0, tdsValue = 0, temperature = 25; // might need to adjust temp
+int averageVoltage = 0, tdsValue = 0, temperature = 25; // when you prove that temp sensor works, change to temp
 int temp = 0;
 
 void setup(void)
