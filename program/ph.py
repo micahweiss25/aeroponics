@@ -5,10 +5,10 @@ def ph_cycle(None):
       GPIO.output(3, GPIO.LOW)
       sleep(5)
       GPIO.output(3, GPIO.HIGH)
-      sleep(5)
+      sleep(600)
   elif ph_balance < 5.3:
       print("ph low")
       GPIO.output(4, GPIO.LOW)
       sleep(5)
       GPIO.output(4, GPIO.HIGH)
-      sleep(5)
+      sleep(600)
