@@ -14,15 +14,4 @@ def sensor_data(none):
         with open(f"ph_log_{inst_time}", "w") as log:
             log.write(f"pH: {ph_balance}; voltage: {voltage}; ec: {ec}; time: {datetime.datetime.now()}")
         # This should be made into it's own process so the sleeps don't stop data collection
-        if ph_balance > 6.3:
-            print("ph high")
-            GPIO.output(3, GPIO.LOW)
-            sleep(5)
-            GPIO.output(3, GPIO.HIGH)
-            sleep(5)
-        elif ph_balance < 5.3:
-            print("ph low")
-            GPIO.output(4, GPIO.LOW)
-            sleep(5)
-            GPIO.output(4, GPIO.HIGH)
-            sleep(5)
+
