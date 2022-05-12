@@ -4,7 +4,7 @@ import datetime
 from sensors import ph_balance, sensor_data
 from misters import mist_cycle
 from ph import ph_cycle
-from connect_gpio import make_connection
+from connect_gpio import *
 try:
     import multiprocessing as mp
 except RuntimeError:
