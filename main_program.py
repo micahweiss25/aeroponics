@@ -47,10 +47,10 @@ def res_maintain(none):
     s = [0]
     while True:
         read_serial = str(ser.readline()) ## find the format so you can just get numbers
-        ph_log.write(f"{read_serial}; {datetime.datetime.now()}")
         # or modify ph sketch 
         # Should I pipe data from this function to a different one?
         ##### FOR NOW #####
+
         try:
             if "pH" in read_serial:
                 read_serial = read_serial.split("pH")[1]
