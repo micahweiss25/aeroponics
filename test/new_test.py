@@ -13,6 +13,7 @@ GPIO.setmode(GPIO.BCM)
 def connect(var):
   print(f"connect to {var}")
   GPIO.setup(var, GPIO.OUT, initial=GPIO.HIGH)
+  
 # give test() the GPIO pin number and a boolean value (bool true = on, bool false = off) 
 # to turn on and off a pin
 def test(var,pos):
