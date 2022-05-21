@@ -9,10 +9,19 @@ except RuntimeError:
 from time import sleep
 import serial
 import datetime
-from sensors import ph_balance, sensor_data
-from misters import mist_cycle
+try:
+    from sensors import ph_balance, sensor_data
+except:
+    print("failed to import sensors")
+try:
+    from misters import mist_cycle
+except:
+    print("failed to import ph")
 from ph import ph_cycle
-from connect_gpio import *
+try:
+    from connect_gpio import *
+except:
+    print("failed to import connect_gpio")
 
 
 connect_gpio.make_connection()
