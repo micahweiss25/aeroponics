@@ -8,7 +8,7 @@ def make_connection():
     ## ACTIVE LOW! ##
     GPIO.setwarnings(False) # turn off warnings
     GPIO.setmode(GPIO.BCM) # use GPIO numbers to specify inputs
-    GPIO.setup(SOLENIOD, GPIO.OUT, initial=GPIO.HIGH) # GPIO2 = ACID
+    GPIO.setup(ACID, GPIO.OUT, initial=GPIO.HIGH) # GPIO2 = ACID
     GPIO.setup(BASE, GPIO.OUT, initial=GPIO.HIGH) # GPIO3 = BASE
     GPIO.setup(NUTRIENT, GPIO.OUT, initial=GPIO.HIGH) # GPIO4 = NUTRIENT
     GPIO.setup(WATER, GPIO.OUT, initial=GPIO.HIGH) # GPIO17 = WATER
