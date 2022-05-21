@@ -5,6 +5,8 @@ def sensor_data(none):
         ser = serial.Serial('/dev/ttyACM0',9600)
     except:
         print("failed to find serial")
+    # the first readline sometimes happens midline, so I just get rid of it
+    toss = ser.readline()
     while True:
         read_serial = str(ser.readline(), 'UTF-8') # readline should hang until a new line is sent
         read_serial = read_serial.split("#")
