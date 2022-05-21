@@ -1,13 +1,27 @@
 from time import sleep
 import RPi.GPIO as GPIO
-try:
-  from test_gpio_connect import *
-except:
-  print("failed to import gpio_connect")
-make_connection()
-def acid_on():
-  # include the portion where you set up the GPIO because I'm hearing weird noises and I can't pin down what part is causing it
-  print("acid on")
-  GPIO.output(ACID, GPIO.LOW)
-  print("acid off")
-  GPIO.output(ACID, GPIO.HIGH)
+
+ACID = 2
+BASE = 3
+NUTRIENT = 4
+WATER = 17
+SOLENIOD = 27
+
+print("set to BCM")
+GPIO.setmode(GPIO.BCM)
+
+def connect(var):
+  print(f"connect to {var}")
+  GPIO.setup(var, GPIO.OUT, initial=GPIO.HIGH)
+# give test() the GPIO pin number and a boolean value (bool true = on, bool false = off) 
+# to turn on and off a pin
+def test(var,pos):
+  if pos:
+    print(f"{var} on")
+    GPIO.output(var, GPIO.LOW)
+  if not pos:
+    print(f"{var} off")
+    GPIO.output(var, GPIO.HIGH)
+
+def print_connections():
+  print(f"ACID = {ACID}\nBASE = {BASE}\nNUTRIENT = {NUTRIENT}\nWATER = {WATER}\nSOLENIOD = {SOLENIOD}")
