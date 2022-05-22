@@ -1,0 +1,21 @@
+BLUF: at least one switch must be on
+
+DESCRIPTION: After the connections are made and the first GPIO pin is set to low (activating the relay switch), you cannot turn the corrisponding
+relay switch back off unless another switch is turned on.
+
+POSSIBLE SOURCE: 
+1. COMMON GROUND: The GPIO pin cannot be set back to low (creating a ground) because the relay switch and GPIO pins don't
+  share a common ground. To turn the relay switch off, the GPIO pin goes to zero.
+    - TEST: 
+    connect multimeter to base pin on pi and GPIO pin of interest
+    ```
+    connect(BASE)
+    connect(ACID)
+    test(BASE, 1)
+    test(BASE, 0) * expected behavior (EB): base pump doesn't turn off. GPIO pin reads non-zero volts despite being set to low.
+    test(ACID, 1) *EB: acid pump turns on. corresponding gpio pin reads non-zero volts. base pump turns off. pin now reads zero volts. 
+    ```
+    connect relay switch power and ground to pi instead of buck converter (5v pins) and run the same test again. 
+    
+2. SUFFICIENT POWER: The pi doesn't have enough power to keep every switch high. Some pins' voltage drop below relay's threshold thus reading low signal
+and activating. I don't think this is the issue because the pi would brown out instead of failing to ground a pin. 
