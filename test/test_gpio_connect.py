@@ -1,11 +1,12 @@
 impor RPi.GPIO as GPIO
-ACID = 2
-BASE = 3
-NUTRIENT = 4
-WATER = 17
-SOLENIOD = 27
-    
-def make_connection():
+ACID = 3
+BASE = 17
+NUTRIENT = 27
+WATER = 22
+SOLENIOD = 23
+
+# make connection
+def mc():
     ## ACTIVE LOW! ##
     GPIO.setwarnings(False) # turn off warnings
     GPIO.setmode(GPIO.BCM) # use GPIO numbers to specify inputs
