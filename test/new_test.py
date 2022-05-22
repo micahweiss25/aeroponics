@@ -1,12 +1,6 @@
 from time import sleep
 import RPi.GPIO as GPIO
 
-ACID = 2
-BASE = 3
-NUTRIENT = 4
-WATER = 17
-SOLENIOD = 27
-
 print("set to BCM")
 GPIO.setmode(GPIO.BCM)
 
