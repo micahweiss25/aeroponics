@@ -1,4 +1,4 @@
-impor RPi.GPIO as GPIO
+import RPi.GPIO as GPIO
 ACID = 3
 BASE = 17
 NUTRIENT = 27
