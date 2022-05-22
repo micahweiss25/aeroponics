@@ -1,3 +1,4 @@
+impor RPi.GPIO as GPIO
 ACID = 2
 BASE = 3
 NUTRIENT = 4
