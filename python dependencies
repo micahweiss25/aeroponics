@@ -1,0 +1,4 @@
+pip3 install mysql-connector-python
+time
+serial
+RPi
