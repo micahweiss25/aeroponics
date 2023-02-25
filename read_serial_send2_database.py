@@ -10,7 +10,7 @@ USER = 'wei_pi'
 
 PASSWORD = 'password'
 
-db_connection = mysql.connector.connect(host=HOST, database=DATABASE, user=USER, password=PASSWORD)
+db_connection = mysql.connect(host=HOST, database=DATABASE, user=USER, password=PASSWORD)
 
 db_cursor = db_connection.cursor()
 
