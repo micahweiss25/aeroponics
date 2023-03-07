@@ -1,0 +1,5 @@
+TLDR: don't put complicated scripts in crontab. Instead, write a shell script and have cron execute it.
+
+When I had a complicated pgrep command to check if my misting scripts were running,
+the crontab wouldn't actually execute the python script. the solve was to write a shell script that did the same thing and also logged everything for debugging
+https://stackoverflow.com/questions/12534135/crontab-not-executing-a-python-script
