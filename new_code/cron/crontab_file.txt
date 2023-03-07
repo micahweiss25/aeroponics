@@ -1,0 +1,2 @@
+* * * * * /home/wei_pi/logs_cron.sh >> /home/wei_pi/logs/cron/sensor_logs.txt 2>&1
+* * * * * /home/wei_pi/mist_cron.sh >> /home/wei_pi/logs/cron/mist_logs.txt 2>&1
